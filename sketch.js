@@ -10,8 +10,21 @@ function setup(){
   frameRate(10);
 }
 
+function draw(){
+	if(gameState == 'init'){
+		initGame();
+	}
+	else if(gameState == 'play'){
+		runGame();
+	}
+	else if(gameState == 'end'){
+		endGame();
+	}
+}
+
 function initGame(){
 	background(0, 0, 0);
+	
 	var name = '~~ Snake Game ~~';
 	textSize(50);
 	fill(255);
@@ -80,17 +93,7 @@ function endGame(){
 	noLoop();
 }
 
-function draw(){
-	if(gameState == 'init'){
-		initGame();
-	}
-	else if(gameState == 'play'){
-		runGame();
-	}
-	else if(gameState == 'end'){
-		endGame();
-	}
-}
+
 
 function setJelloShots(num){
   var cols = floor(width / pixel_size);
