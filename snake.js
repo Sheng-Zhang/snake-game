@@ -7,7 +7,8 @@ function Snake(){
     }
 
     //draw the snake head
-    rect(this.pos.x, this.pos.y, pixel_size, pixel_size)
+    //rect(this.pos.x, this.pos.y, pixel_size, pixel_size)
+    ellipse(this.pos.x+pixel_size/2, this.pos.y+pixel_size/2, pixel_size, pixel_size);
   }
 
   this.update = function(){
