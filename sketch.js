@@ -11,7 +11,7 @@ function setup(){
 }
 
 function initGame(){
-	background(50, 50, 100);
+	background(0, 0, 0);
 	var name = '~~ Snake Game ~~';
 	textSize(50);
 	fill(255);
@@ -38,11 +38,10 @@ function startGame(){
 }
 
 function runGame(){
-	background(50, 50, 100);
+	background(0, 0, 0);
+	
 	textSize(12);
 	fill(255,215,0);
-
-	
 	text("score: " + snake.tail.length, 1, 10);
 	text("highscore: " + highscore, 1, 24);
 
@@ -64,7 +63,7 @@ function runGame(){
 }
 
 function endGame(){
-	background(50, 50, 100);
+	background(0, 0, 0);
 	textSize(32);
 	var msg = 'Game Over';
 	var score = 'Your Score is ' + snake.tail.length;
