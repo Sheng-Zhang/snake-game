@@ -12,6 +12,7 @@ function setup(){
 
 function initGame(){
 	background(50, 50, 100);
+	
 	var name = '~~ Snake Game ~~';
 	textSize(50);
 	fill(255);
@@ -56,15 +57,19 @@ function runGame(){
 		rect(shots[i].x, shots[i].y, pixel_size, pixel_size);
 		if(snake.eat(shots[i])){
 			snake.tail.push(createVector(snake.x, snake.y));
+			
 			shots.splice(i, 1);
+			
 			setJelloShots(1);
-			if(snake.tail.length > highscore) highscore = snake.tail.length;
+			if(snake.tail.length > highscore) 
+				highscore = snake.tail.length;
 		}	
 	}
 }
 
 function endGame(){
 	background(50, 50, 100);
+	
 	textSize(32);
 	var msg = 'Game Over';
 	var score = 'Your Score is ' + snake.tail.length;
@@ -78,6 +83,7 @@ function endGame(){
 	startBtn = createButton('Restart Game');
 	startBtn.position(width/2 - startBtn.width/2, height/2 + 40);
 	startBtn.mousePressed(startGame);
+	
 	noLoop();
 }
 
@@ -96,9 +102,11 @@ function draw(){
 function setJelloShots(num){
   var cols = floor(width / pixel_size);
   var rows = floor(height / pixel_size);
-  for(var i=0;i<num;i++){
+	
+	for(var i=0;i<num;i++){
     var location = createVector(floor(random(cols)), floor(random(rows))).mult(pixel_size);
-    while(snake_intersect(location)){
+		
+		while(snake_intersect(location)){
       location = createVector(floor(random(cols)), floor(random(rows))).mult(pixel_size);
     }
     shots.push(location);
@@ -110,14 +118,16 @@ function snake_intersect(location){
   if(location.x == snake.pos.x && location.y == snake.pos.y){
     intersect = true;
   }else{
-    for(var i=0;i<snake.tail.length;i++){
+    for(var i=0; i < snake.tail.length; i++)
+		{
       if(location.x == snake.tail[i].x && location.y == snake.tail[i].y){
         intersect = true;
         break;
       }
     }
     for(var i=0;i<shots.length;i++){
-      if(location.x == shots[i].x && location.y == shots[i].y){
+      if(location.x == shots[i].x && location.y == shots[i].y)
+			{
         intersect = true;
         break;
       }
