@@ -2,12 +2,13 @@ function Snake(){
   this.show = function(){
     fill(255);
     //draw the snake tail
-    for(var i=0;i<this.tail.length;i++){
+    for(var i=0; i<this.tail.length; i++){
       rect(this.tail[i].x, this.tail[i].y, pixel_size, pixel_size);
     }
 
     //draw the snake head
-    rect(this.pos.x, this.pos.y, pixel_size, pixel_size)
+    //rect(this.pos.x, this.pos.y, pixel_size, pixel_size)
+    ellipse(this.pos.x+pixel_size/2, this.pos.y+pixel_size/2, pixel_size, pixel_size);
   }
 
   this.update = function(){
@@ -21,6 +22,7 @@ function Snake(){
 
     this.tail.unshift(createVector(this.pos.x, this.pos.y));
     this.tail.pop();
+    
     //move the snake
     this.pos.x += this.speed.x * pixel_size;
     this.pos.y += this.speed.y * pixel_size;
@@ -35,7 +37,7 @@ function Snake(){
     if(this.pos.x >= width || this.pos.y >= height || this.pos.x < 0 || this.pos.y < 0){
     	gameState = 'end';
     }
-    for(var i=0;i<this.tail.length;i++){
+    for(var i=0; i<this.tail.length; i++){
       if(this.tail[i].x == this.pos.x && this.tail[i].y == this.pos.y){
       	gameState = 'end';
       }
@@ -48,6 +50,7 @@ function Snake(){
 
   this.reset = function(){
     shots = [];
+
     this.tail = [];
     this.pos = createVector(0, 0);
     this.speed = createVector(1, 0);
