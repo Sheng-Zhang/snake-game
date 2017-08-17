@@ -10,6 +10,18 @@ function setup(){
   frameRate(10);
 }
 
+function draw(){
+	if(gameState == 'init'){
+		initGame();
+	}
+	else if(gameState == 'play'){
+		runGame();
+	}
+	else if(gameState == 'end'){
+		endGame();
+	}
+}
+
 function initGame(){
 	background(50, 50, 100);
 	
@@ -39,11 +51,10 @@ function startGame(){
 }
 
 function runGame(){
-	background(50, 50, 100);
+	background(0, 0, 0);
+	
 	textSize(12);
 	fill(255,215,0);
-
-	
 	text("score: " + snake.tail.length, 1, 10);
 	text("highscore: " + highscore, 1, 24);
 
@@ -52,9 +63,9 @@ function runGame(){
 	snake.checkDeath();
 
 	fill(255, 192, 203);
-
-	for(var i=0;i<shots.length;i++){
+	for(var i=0; i<shots.length; i++){
 		rect(shots[i].x, shots[i].y, pixel_size, pixel_size);
+		
 		if(snake.eat(shots[i])){
 			snake.tail.push(createVector(snake.x, snake.y));
 			
@@ -87,17 +98,7 @@ function endGame(){
 	noLoop();
 }
 
-function draw(){
-	if(gameState == 'init'){
-		initGame();
-	}
-	else if(gameState == 'play'){
-		runGame();
-	}
-	else if(gameState == 'end'){
-		endGame();
-	}
-}
+
 
 function setJelloShots(num){
   var cols = floor(width / pixel_size);
@@ -114,7 +115,8 @@ function setJelloShots(num){
 }
 
 function snake_intersect(location){
-  var intersect = false;
+	var intersect = false;
+	
   if(location.x == snake.pos.x && location.y == snake.pos.y){
     intersect = true;
   }else{
